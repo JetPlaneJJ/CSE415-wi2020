@@ -1,0 +1,210 @@
+Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 22:39:24) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+= RESTART: C:\Users\jiaji\OneDrive\Documents\College Classes\2019-2020\CSE 415\HW2\a2_starter\a2-starter-code\Int_Solv_Client.py
+problem_name = Farmer_Fox
+----------------------------------------------------------------------
+Int_Solv_Client (Version 1)
+Farmer_Fox; 1.0
+Key: F = Farmer, f = fox, C = Chicken, G = Grain
+Rules: fox cannot be alone with Chicken, Chicken cannot be alone with Grain.
+Goal: get all items on the right side of the river without violating the rules.
+See this link for background on the puzzle: /nhttps://www.mathsisfun.com/chicken_crossing_solution.html
+----------------------------------------------------------------------
+
+Step 0, Depth 0
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 1
+ Grain: 1
+
+Right of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 0
+ Grain: 0
+ The boat is on the left.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> f
+Operator f selected.
+----------------------------------------------------------------------
+You cannot move the f in the current state!
+----------------------------------------------------------------------
+
+Step 0, Depth 0
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 1
+ Grain: 1
+
+Right of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 0
+ Grain: 0
+ The boat is on the left.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> C
+Operator C selected.
+
+Step 1, Depth 1
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 0
+ fox: 1
+ Chicken: 0
+ Grain: 1
+
+Right of River:
+
+ Farmer: 1
+ fox: 0
+ Chicken: 1
+ Grain: 0
+ The boat is on the right.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> F
+Operator F selected.
+
+Step 2, Depth 2
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 0
+ Grain: 1
+
+Right of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 1
+ Grain: 0
+ The boat is on the left.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> G
+Operator G selected.
+
+Step 3, Depth 3
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 0
+ fox: 1
+ Chicken: 0
+ Grain: 0
+
+Right of River:
+
+ Farmer: 1
+ fox: 0
+ Chicken: 1
+ Grain: 1
+ The boat is on the right.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> C
+Operator C selected.
+
+Step 4, Depth 4
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 1
+ Grain: 0
+
+Right of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 0
+ Grain: 1
+ The boat is on the left.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> f
+Operator f selected.
+
+Step 5, Depth 5
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 1
+ Grain: 0
+
+Right of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 0
+ Grain: 1
+ The boat is on the right.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> F
+Operator F selected.
+
+Step 6, Depth 6
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 1
+ fox: 0
+ Chicken: 1
+ Grain: 0
+
+Right of River:
+
+ Farmer: 0
+ fox: 1
+ Chicken: 0
+ Grain: 1
+ The boat is on the left.
+
+Enter f, C, G, or F to just move the Farmer; B-back; H-help; Q-quit. >> C
+Operator C selected.
+
+Step 7, Depth 7
+CURRENT_STATE = 
+
+Left of River:
+
+ Farmer: 0
+ fox: 0
+ Chicken: 0
+ Grain: 0
+
+Right of River:
+
+ Farmer: 1
+ fox: 1
+ Chicken: 1
+ Grain: 1
+ The boat is on the right.
+
+CONGRATULATIONS!
+You have solved the problem by reaching a goal state.
+Do you wish to continue exploring?
+
+Y or N? >> N
+The session is finished.
+>>> 
