@@ -1,0 +1,33 @@
+State Spaces (Sigma) = set of all possible states
+- move = transion of states
+- operator (state transformation + pre-conditional/predicate)
+- problem space = state space + operators
+	- the same state space can be part of multiple prob. spaces
+	- ex: prob space = {1,2,3,4} operators --> operator add1
+	- problem space graphs: undirected graph showing solution path
+	- quiz example: Sum(i=0,7)[Choose from 7 pieces * Choose from 7 
+	places*i pieces!*(6^i) orientations^pieces]
+
+Combinatorics
+- combinatorial explosion = expon. growth
+	- b moves, algorithm looks n steps ahead, 1+b+b^2...b^n states
+- Painted Squares Puzzle example:
+	- n_permutations * n_orientations^n_pieces possible states in a game
+
+Searchs
+- BFS preferred over DFS, but can be expensive
+- iteratiive deepening DFS = benefits from both DFS+BFS, has depth limits++
+- ItrDFS saves memory at expense of time
+- Dijisktra/UCS = searchs nodes in order of increasing path cost from start
+	- Best First Search: same as UCS but with PQ
+
+Heuristic Search
+- admissible heurist.= never overestimates true cost to reach goal node from any node
+	- A* finds shortest path as soon as it expands the goal.
+- consistent = heuristic value of n <= cost of its successor n′ + successor's heuristic
+	- A* never has to re-expand a node
+	- h values monotonically decreasing along shortest path to goal
+
+Adversarial Search
+- 
+
