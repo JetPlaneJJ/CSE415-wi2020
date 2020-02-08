@@ -1,3 +1,7 @@
+CSE 415 Big Boi Topics
+*** = hella important
+** = good to note
+
 State Spaces (Sigma) = set of all possible states
 - move = transion of states
 - operator (state transformation + pre-conditional/predicate)
@@ -11,7 +15,7 @@ State Spaces (Sigma) = set of all possible states
 Combinatorics
 - combinatorial explosion = expon. growth
 	- b moves, algorithm looks n steps ahead, 1+b+b^2...b^n states
-- Painted Squares Puzzle example:
+- **Painted Squares Puzzle example:
 	- n_permutations * n_orientations^n_pieces possible states in a game
 
 Searchs
@@ -29,5 +33,32 @@ Heuristic Search
 	- h values monotonically decreasing along shortest path to goal
 
 Adversarial Search
-- 
+- Mini-max Search: each player (one trying to get max score, one trying to get min)
+	- max player = triangle pointing up
+	- DEPTH FIRST TRAVERSAL (go all the way bottom left, then go right)
+	- Each agent will ALWAYS choose the best choice
+	- Calculation tips: start from bottom of tree, bring values upward
+	- Alpha-beta Pruning: set (-infinity, infinity), where max is -infinity (start
+	from extremely small value)
+		- everytime you hit a leaf node, assess value (either max or min depending
+			on whatever triangle you last went down) and pass upward
+		- if alpha >= beta (max player crosses value of min player), STOP! Prune/forget
+		the remaining branches under the triangle.
+		- sometimes this algorithms has max depth search/iterative deepening
+- **Expectimax Search: other player plays randomly/illogically
+	- random player = circle
+	- take sum of weighted average of possibilities (probability * leaf node value)
+	- CANNOT PRUNE
+
+Markov Decision Processes
+- Plans can't go wrong; know every action from start --> end
+- Policy: tells preferred actions, is characteristic of agent
+- Discount: how much your reward changes per step (discount (gamma < 1) or living reward, or stay same)
+- Q-Value: Q1(s,left) = agent commits to taking a FIRST ACTION! Then Q value = the optimal score from then on.
+- ***Bellman Equations: Key: V*(s) is the expected value if you take infinite optimal actions in a game. Q*(s,a) is the expected value if you take one certain first action, then go anywhere infinitely after that. R(s,a,s') = reward you get going from s to s', taking action a.
+	- V*(s) = maxA Q*(s,a)
+		- given A within all possible actions, the best choice, V = Q
+		- 
+
+
 
