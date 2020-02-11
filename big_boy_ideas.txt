@@ -57,8 +57,52 @@ Markov Decision Processes
 - Q-Value: Q1(s,left) = agent commits to taking a FIRST ACTION! Then Q value = the optimal score from then on.
 - ***Bellman Equations: Key: V*(s) is the expected value if you take infinite optimal actions in a game. Q*(s,a) is the expected value if you take one certain first action, then go anywhere infinitely after that. R(s,a,s') = reward you get going from s to s', taking action a.
 	- V*(s) = maxA Q*(s,a)
-		- given A within all possible actions, the best choice, V = Q
-		- 
+		- given A within all possible actions, choose the best choice, V = Q
+	- Q*(s,a) = SUM|A T(s,a,s') * [R(s,a,s')+GAMMA(V*(s'))]
+		- given end state s', find the sum of weighted averages
+		- Transition function = probability of the action happening
+		- Reward = value you get for taking that action
+		- GAMMA = discount
+		- V*(s') part of recursive definition of Bellman, get V value from children
+- Temporal Difference Learning: agent learns from each experience
+	- update V(s) each time we experience a transition
+	- likely outcomes s' will contribute to updates more often
+	- policy is still fixed, still doing evaluations
+	- "Learning Rate" = how fast the agent learns new thing AND forgets old value, aka ALPHA
+		- Exponential Moving Average (makes recent samples more important)
+		- Decreasing Alpha Learning Rate (earlier actions have more impact)
+		- Example use: Vpi(s) = (1-ALPHA)*Vpi(s) + ALPHA(new sample)
+			- (1-0.5)*0 + 0.5[-2 + 1.0*8] = 3, 0 = previous V, 0.5 = learning rate, -2 = reward, 1.0 = gamma, Vpi(s') = 8
+	- problems with TD learning: if we want to turn values into new policy, we don't have the needed Q values
+- ***Q-Learning: Basically Bellman Equations, but... the sample is (Reward + GAMMA*[max|A' Qk(s',a')])
+	- considers the successors' Q-values instead of just Value, learn Q-Values as you go
+	- "Off-policy learning" = Q-learning will converge to the optimal policy, even if acting suboptimally
+	- However... need to explore many many states, Epsilon greedy --> random actions like flipping coin every step, learn first exploit later.
+		- takes a long time, learning rate small
+		- See Exp F(x) to fix the above issues!
+- **Exploration Function: tells agent when to explore? Explore places w/ unestablished "badness" values first!
+	- input value estimate "U" and visit count "N", output optimistic utility
+		- f(U,N) = U + K/N, where K is a constant and K/N gets larger over time
+	- modified Q-Update: Q(s,a) = R(s,a,s') + GAMMA*max|A' f[Q(s,a'),N(s',a')]
+		- Reward + discounted new sample value where the maximum action A is chosen and the exploration function is applied w/ the Q-value and visit count of that state
+	- Regret: measure of total mistake costs = expected rewards - optimal rewards
+		- optimally learning to be optimal
+		- exploration function's Regret < random exploration regret
+- Feature Based Reinforcement Learning: want to generalize actions as opposed to normal Q-learning
+	- learn about small number of training states from experience
+	- Q-learning uses too much memory. FBR is better.
+		- ex: Pacman game, feature = distance from self to closest ghosts, whether they are in tunnel, distance to food...etc
+	- Solution: State = vector of properties/features
+		- function that converts state to real number
+		- ex: number of enemies, distance to goal
+	- Linear Value Functions: write a Q function for any state using a few weights (w1,w2...)
+		- pros: state can be summed up by a number
+		- cons: multiple states might share a number
+		- modified Q-Learning Equation: Q(s,a) = w1*f1(s,a)+w2*f2(s,a)... + wn*fn(s,a)
+	- if something bad happens, blame the features that were on and disprefer those states
+	
+
+
 
 
 
