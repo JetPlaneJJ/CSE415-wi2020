@@ -35,8 +35,9 @@ Value Iteration.
 
 '''
 
-import YourUWNetID_VI as VI
-import YourUWNetID_Q_Learn as Q_Learn
+#import YourUWNetID_VI as VI
+import jial8_VI as VI
+import jial8_Q_Learn as Q_Learn
 
 from TowersOfHanoi import *
 import TowersOfHanoi

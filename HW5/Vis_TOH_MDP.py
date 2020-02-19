@@ -9,10 +9,9 @@ It also supports displaying values in each state, and highlighting
 Facilities are here for showing Q-states, and user interaction via
 menus and a "driving console" to directly controlling an agent
 solving the puzzle.
-
 '''
 
-import YourUWNetID_Q_Learn as Q_Learn
+import jial8_Q_Learn as Q_Learn
 
 import tkinter as tk
 WIDTH = 650
@@ -205,7 +204,7 @@ def create_TK_Canvas():
   Ra = R * 1.6  
   SEGMENTS = [ (int(R*x), int(R*y), int(Ra*x), int(Ra*y)) for (x, y) in DRIVING_ARROW_XYS]
 
-# display the menu
+  # display the menu
   root.config(menu=menubar)
   #print("VIS initialization finished")
 
