@@ -77,9 +77,11 @@ def handle_transition(action, new_state, r):
     for a in ACTIONS:
         # use q learning equation, remember ALPHA is the learning rate
         q = ((1-ALPHA)*Q_VALUES[(PREVIOUS_STATE,action)]) + ALPHA*(r + GAMMA*(max(prev, Q_VALUES[(new_state, a)])))
-    Q_VALUES[(PREVIOUS_STATE, action)]
-    update_Q_value(PREVIOUS_STATE, action, q)
-    PREVIOUS_STATE = new_state
+    # do not update if users exits and they're not on the goal state
+    if (not action == "Exit" or is_valid_goal_state(PREVIOUS_STATE)):
+        Q_VALUES[(PREVIOUS_STATE, action)] = q
+        update_Q_value(PREVIOUS_STATE, action, q)
+        PREVIOUS_STATE = new_state
     return # Nothing needs to be returned.
 
 def choose_next_action(s, r, terminated=False):
@@ -94,7 +96,7 @@ def choose_next_action(s, r, terminated=False):
         return None
     # Unless s is the initial state, compute a new q-value for the
     # previous state and action.
-    if not (s==INITIAL_STATE):
+    if not s == INITIAL_STATE:
         new_qval = float("-inf") # A bogus value for now.
         for a in ACTIONS:
                 q = max(new_qval,Q_VALUES[(s,a)])
@@ -104,7 +106,7 @@ def choose_next_action(s, r, terminated=False):
         # Then let the Engine and GUI know about the new Q-value.
         update_Q_value(PREVIOUS_STATE, LAST_ACTION, q)
     # try all M actions with non-zero probability, with probability 1-E = greedy, otherwise random
-    action_chosen = ACTIONS[0] # a placeholder, so some action is returned.
+    action_chosen = ACTIONS[0] 
     q = float("-inf")
     # what is the best action?
     for a in ACTIONS:
@@ -118,9 +120,9 @@ def choose_next_action(s, r, terminated=False):
     if is_valid_goal_state(s):
         # if CUSTOM_ALPHA is True, manage alpha values over time, otherwise go with fixed value.
         if CUSTOM_ALPHA:
-            ALPHA -= 0.1*ALPHA # ?????????
+            ALPHA -= 0.01*ALPHA # ?????????
         if CUSTOM_EPSILON:
-            EPSILON -= 0.1*ALPHA
+            EPSILON -= 0.01*EPSILON
         return "Exit"
     LAST_ACTION = action_chosen # remember this for next time
     PREVIOUS_STATE = s        #    "       "    "   "    "
@@ -129,7 +131,6 @@ def choose_next_action(s, r, terminated=False):
 
 def extract_policy(S, A):
     global Policy
-    # get states, translate to actions
     for s in S:
         if is_valid_goal_state(s):
             Policy[s] = "Exit"
@@ -151,6 +152,7 @@ def extract_policy(S, A):
 # my private helper function, returns true if r<epsilon
 def random_choice(epsilon):
     r = random.random()
+    print(r)
     if r <= epsilon:
         return True
     return False
