@@ -101,6 +101,72 @@ Markov Decision Processes
 		- modified Q-Learning Equation: Q(s,a) = w1*f1(s,a)+w2*f2(s,a)... + wn*fn(s,a)
 	- if something bad happens, blame the features that were on and disprefer those states
 	
+Probabilistic Reasoning
+- why? data = noise, models uncertainty
+- P(X), where X is a random variable. A symbol representing class of events that may occur at any number of times, takes on value in given set D domain.
+	- event = "Sunny on Thursday", Class of event: weather
+- Probability distribution: P=0~1, function that assigns to each domain element a value, if D is finite, then P is usually a table. Table numbers must add up to 1.0
+- Domain: "Sun", "Rain", "Fog"
+- Example P. Distrib = "0.6, 0.1, 0.3..."
+- Event: Set E of all outcomes
+- Bayes' Rule: P(A|B) = P(B|A)*P(A)/(P(B)
+- Bayes' Networks: graph showing joint distributions of probabilities
+	- can be efficient, take advantage of independence, conditional independence
+	- probabilistic interference
+	- compute desired prob. from other known probs.
+	- Ek... evidence variables
+	- Q = query variable
+	- Hidden variables = H1... Hr
+	- inference by ENUMERATION (we want P(Q|e1...ek), e being results)
+		1. Select entries in table consistent with evidence
+		2. Sum out H to get joint of Query and evidence
+		3. Normalize (1/Z)
+	- Marginal Probability = BEFORE you know the evidence (P(Q)… don't know)
+	- Posterior Probability = AFTER evidence
+	- COMPUTATIONAL COMPLEXITY
+		- Time complexity = O(d^n), d = number of random variables, n entries
+		- Space complexity is the same, to store the joint distribution
+
+Neural Networks
+- Perceptron: flowchart starting with inputs and their weights (w1,w2...) on the left, threshold, optional hidden nodes, output on the right.
+	- computationally powerful, static
+	- can allow for tolerating mismatch (lower the threshold value)
+- Perceptron Training Sets
+	- X = X, U, X-… set of training examples
+	- Sx = (X1,X2,X3…) is a training sequence on X, given
+		○ Each Xk is a member of X
+		○ Each element of X occurs infinitely often in Sx
+	- You should have a mix of each training example in your training sequence
+	- You can never run out of one example
+		○ must keep recurring (infinitely often)
+		○ you might need more occurrences to converge
+	- Prevents this algorithm from never seeing a training example
+	- Limitations... can't compute Exclusive OR? Use multi-layer perceptrons.
+	- ***multi-layer perceptrons: have multiple thresholds, multiple inputs going to multiple paths, maybe has hidden nodes.
+	- Hidden Node Input Activation: sigmoid activation functions, does not apply threshold! 
+- RLU (Rectified Linear Unit)
+	- continuous graph
+	- 0 if x < 0, a straight diagonal line any x > 0
+	- always increasing, pretty good! (only if x>0 tho)
+- *** Epoch: 1 pass through the training set, with an adjustment to networks weights for each training example.
+- ***If not enough hidden nodes, training might not converge!
+- ***DELTA RULE: for each training example <X,T>, compute F(X), the outpuss based on current weights. Add DELTAw to a weight when updating: DELTAw = N*d*F, N = training rate.
+	- if W leads to hidden node, use backpropagation.
+
+Deep Learning
+- Hill Climbing concept: start wherever, repeatedly move to best neighboring state, if no neighbors better than current --> QUIT
+	- something could go wrong: might encounter a "plateau", or you found a local maximum, thinking its the highest point
+	- How to find a good local optimum?
+- Auto-encoder (crude idea sketch)
+	- encodes the image input
+	- learn something from even unlabeled images, do some filtering, produce an output (same number as inputs)
+		- train to match output with input!!! If something doesn't match, then use that as an error term and backpropagate.
+- Training Procedure: Stacked Auto-Encoder, learning many layers 
+	- auto-encoder only uses 1 layer, "compressed" version of input layer
+	- stacked: LAYER1 = compress every image, LAYER2 = using compressed images as input, and as output to be predicted, repeat for LAYER3,4,5...
+		- note: between layers, responses get agglomerated from several neurons ("complex cells")
+- Deep Learning is generally harder to understand what the network represents at each step compared to Tree-based, Reinforced Learning...
+
 
 
 
